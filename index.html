@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NH콕뱅크</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./style/reset.css">
+    <link rel="stylesheet" href="./style/test01.css">
+    <link rel="stylesheet" href="./style/test02.css">
+    <link rel="stylesheet" href="./style/test03.css">
+    <link rel="stylesheet" href="./style/test04.css">
+</head>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background-color: #fff;
+    }
+
+    #wrap {}
+
+    .left_util {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .container {
+        width: 100%;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        height: 100vh;
+    }
+
+    .utils {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        gap: 10px;
+    }
+
+    header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    .back-arrow,
+    .home-icon {
+        font-size: 24px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    .title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .nav-tabs {
+        display: block;
+        padding: 30px 10px 15px 10px;
+        background-color: #fff;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+    }
+
+    .nav-tabs .nav-line {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-blue);
+
+    }
+
+    .nav-tabs ul {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .nav-tabs span {
+        font-size: 15px;
+        color: #888;
+    }
+
+    .nav-tabs li.active span {
+        color: var(--primary-blue);
+        font-weight: bold;
+        padding-bottom: 3px;
+    }
+
+    .account-info {
+        padding: 20px 20px 10px;
+        background-color: #F4F5F7;
+    }
+
+    .bank-info {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .bank-logo {
+        font-size: 20px;
+        margin-right: 8px;
+        width: 28px;
+
+    }
+
+    .bank_info_detail {
+        display: flex;
+        flex-direction: column;
+        line-height: 24px;
+    }
+
+    .bank-cover {
+        background-color: #fff;
+        border-radius: 15px;
+        border: 1px solid #E2E3E7;
+        padding: 22px 27px;
+    }
+
+    img {
+        width: 100%;
+    }
+
+    .bank-details {
+        font-weight: 500;
+        color: #626C78;
+        font-size: 16px;
+    }
+
+    .account-number {
+        color: #232323;
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .balance {
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        margin-top: 10px;
+        color: #797985;
+        gap: 5px;
+    }
+
+    .balance .amount {
+        font-size: 20px;
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+    .data_info_cover {
+        background-color: #F4F5F7;
+        padding: 10px 0 0;
+    }
+
+    .date-range {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px 20px;
+        background-color: #fff;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .date-range button {
+        font-size: 13px;
+        font-weight: 500;
+        padding: 10px 20px;
+        background-color: #fff;
+        border: 1px solid #C5C5C5;
+        color: #2D3238;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .date-range .active {
+        background-color: var(--primary-blue);
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .date-range .settings {
+        font-size: 18px;
+        border: none;
+        color: #fff;
+        background-color: #7C8290;
+        border-radius: 8px;
+        padding: 5px 12px;
+    }
+
+    .transaction {
+        padding: 15px 20px;
+        background-color: #fff;
+    }
+
+    .exclamation {
+        width: 100%;
+        height: 300px;
+        text-align: center;
+        padding-top: 40px;
+        line-height: 40px;
+    }
+
+    .exclamation i {
+        font-size: 38px;
+        color: #dad4d4;
+    }
+
+    .exclamation {
+        color: #333;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .date-range-info {
+        font-size: 12px;
+        color: #5B5E6F;
+        padding: 20px 20px 20px;
+        background-color: #fff;
+        border-bottom: 1px solid #EEEEEE;
+
+    }
+
+    .transaction-details {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+        background-color: #fff;
+        font-size: 14px;
+        border-bottom: 1px solid #EEEEEE;
+        color: #333;
+    }
+
+    .transaction-date,
+    .transaction-type,
+    .transaction-amount,
+    .transaction-balance {
+        font-size: 14px;
+    }
+
+    .transaction-amount {
+        color: 333;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .transaction-balance {
+        font-size: 12px;
+        color: #999;
+    }
+
+    .transaction-flex-cover {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: right;
+    }
+    #imageView{
+        position: fixed;
+        left: 0;
+        top:0;
+        width:100%;
+        height:100vh;
+        background-color: #fff;
+        padding:10px 0px 20px;
+    }
+    .imageView_header{
+        display: flex;
+        justify-content: start;
+        font-size:18px;
+        font-weight: 500;
+        align-items: center;
+        padding:0 30px;
+    }
+    #imageView .image_content{
+        padding: 0 10px;
+    }
+    .imageView_header a{
+        margin-left: auto;
+        font-size:36px;
+    }
+    #imageView .image_btn{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap:15px;
+        padding: 0 30px;
+    }
+    #imageView .image_btn button{
+        padding:15px 20px;
+        width: 100%;
+        border-radius: 8px;
+        border: 1px solid var(--primary-blue);
+        color:var(--primary-blue);
+    }
+    #imageView .image_btn .shar_image{
+        background-color: var(--primary-blue);
+        color:#fff;
+    }
+</style>
+
+<body class="" onselectstart="return false" ondragstart="return false">
+    <div id="loadingArea" style="display: none;">
+        <div title="로딩중" role="img" class="loadingWrap">
+            <div class="loadingDotWrap"><span class="dotC"></span><span class="dotL"></span><span class="dotR"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="wrap" class="" aria-hidden="true">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--  -->
+
+        <div id="header">
+
+            <div class="headerL">
+
+
+
+
+            </div>
+
+            <h1></h1>
+
+            <div class="headerR">
+
+
+
+
+                <a href="javascript:navigate('SMMN0001R');" title="메인가기" role="button" class="headBtn btnHome"></a>
+
+
+
+
+                <a href="javascript:$POPUP.smLayerOpen('SMVW0002R');" title="전체메뉴" role="button"
+                    class="headBtn btnMenu"></a>
+
+
+
+            </div>
+
+        </div>
+
+
+        <div class="container">
+            <header>
+                <div class="left_util">
+                    <a href="#" class="back-arrow"><i class="bi bi-arrow-left-short"></i></a>
+                    <span class="title">거래내역조회</span>
+                </div>
+                <div class="utils">
+
+                    <a href="#" class="home-icon"><i class="bi bi-house-door" style="font-size: 24px;"></i></a>
+                    <i id="ham" class="bi bi-list" style="font-size: 24px;"></i>
+                </div>
+            </header>
+            <div class="nav-tabs">
+                <div class="nav-line"></div>
+                <ul>
+                    <li>
+                        <span>입출금</span>
+                    </li>
+                    <li class="active">
+                        <span>예적금/신탁</span>
+                    </li>
+                    <li>
+                        <span>대출</span>
+                    </li>
+                    <li>
+                        <span>펀드</span>
+                    </li>
+                    <li>
+                        <span>외화</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="account-info">
+                <div class="bank-cover">
+                    <div class="bank-info">
+                        <span class="bank-logo"><img src="./images/nhLogo.svg"></span>
+                        <div class="bank_info_detail">
+                            <span class="bank-details">[농협]NH고향사랑기부예금</span>
+                            <span class="account-number">353-6658-4832-14</span>
+                        </div>
+                    </div>
+                    <div class="balance">
+                        <span>잔액</span>
+                        <span class="amount">7,000,000원</span>
+                    </div>
+                </div>
+            </div>
+            <div class="data_info_cover">
+                <div class="date-range">
+                    <button>1주일</button>
+                    <button class="active">1개월</button>
+                    <button>3개월</button>
+                    <button>6개월</button>
+                    <button class="settings"><i class="bi bi-sliders"></i></button>
+
+                </div>
+                <div class="date-range-info"></div>
+                <div class="transaction"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="imageView">
+        <div class="imageView_header">
+            <div class="imageView_txt">
+                통장표지조회
+            </div>
+            <a href="javascript:;" role="button" class="btnPopClose"  title="닫기">
+                <i class="bi bi-x"></i>
+            </a>
+        </div>
+        <div class="image_content">
+            <img src="./images/NHImage.jpg" alt="통장사본" />
+
+        </div>
+        <div class="image_btn">
+            <button type="button" class="save_image">이미지 저장</button>
+            <button type="button" class="shar_image">공유하기</button>
+        </div>
+    </div>
+    <div id="popupArea" aria-hidden="false" style="">
+        <div id="SMVW0002R" class="popupWrap full" role="dialog" aria-hidden="false" layertype="service"
+            style="display: block;">
+            <div class="fullPopupDim">
+                <div class="popContent allMenu" style="right: 0px;">
+                    <div class="popContentBox">
+                        <div class="popHead">
+                            <div class="mainMenuHead">
+                                <div class="menuHeadLink">
+                                    <span>오하늘 님 ></span>
+                                    <button type="button" class="btn" tabindex="0"
+                                        onclick="navigate('SMCO1000I');">앱종료</button>
+                                    <!--
+                                    <button type="button" class="btn" tabindex="0"
+                                        onclick="$SMCOMM.logout();">오하늘 님 > </button>
+
+                                    <button type="button" class="btn" tabindex="0"
+                                        onclick="navigate('SMCO1000I');">로그인</button>
+                                    -->
+                                    <div class="btnBox">
+                                        <!-- ▼ [2022-10-11] 윤지현:버튼순서변경-->
+                                        <a href="javascript:;" role="button" class="home popFocus"
+                                            onclick="navigate('SMMN0001R');" title="홈">홈</a>
+
+                                        <a href="javascript:;" role="button" class="setting"
+                                            onclick="navigate('SMVW0801R');" title="설정">설정</a>
+
+                                    </div>
+                                </div>
+                                <div class="menuMyArea">
+                                    <section class="section20">
+                                        <div class="formWrap typeSrch">
+                                            <div class="formItem">
+                                                <div class="inpText icoSearch readonly"><!-- 2022-10-13 태그삭제 -->
+                                                    <i class="bi bi-search" style="margin-right: 10px;"></i>
+                                                    <input type="text" title="검색어 입력" value="" class="tyTxt"
+                                                        placeholder="검색어를 입력하세요."
+                                                        onclick="$POPUP.smLayerOpen('SMCO0013P', {range:'day', query:'메뉴'});"
+                                                        readonly="readonly">
+                                                    <!-- <button type="button" title="입력 텍스트 삭제" class="btnReset"></button> -->
+
+                                                    <!-- <button type="button" title="검색" class="btnSearch" onclick="$POPUP.smLayerOpen('SMCO0013P', {range:'day', query:'메뉴'});"><span class="blind">검색</span></button>2022-10-13 마크업 변경 -->
+                                                    <i class="bi bi-mic" style="width:50px; font-size: 20px;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <ul class="menuLink">
+                                        <a href="javascript:;" role="button"
+                                            onclick="navigate('SMCO1010R', null, null, this);" title="고객센터">고객센터</a>
+                                        <a href="javascript:;" role="button"
+                                            onclick="navigate('SMVW0190R', null, null, this);" title="인증/보안">인증/보안</a>
+                                        <a href="javascript:;" role="button"
+                                            onclick="navigate('SMVW0601R', null, null, this);" title="공지사항">공지사항</a>
+                                        <a href="javascript:;" role="button"
+                                            onclick="navigate('SMVW0501R', null, null, this);" title="이벤트">이벤트</a>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="popContBox">
+                            <div class="mainMenuBox">
+                                <div class="tabWrap oneDepth">
+                                    <div role="tablist" class="tabList allMenuTab">
+                                        <a href="javascript:;" role="tab" class="active" aria-selected="true">뱅킹</a>
+                                        <a href="javascript:;" role="tab">금융상품</a>
+                                        <a href="javascript:;" role="tab">콕팜</a>
+                                        <a href="javascript:;" role="tab">콕쇼핑</a>
+                                        <a href="javascript:;" role="tab">콕혜택</a><!-- 2024-03-14 명칭변경 -->
+                                    </div>
+                                    <div class="tabPanelList">
+
+
+
+                                        <div role="tabpanel" class="tabPanel show">
+                                            <div class="tabWrap jsTabInTab menuBoxWrap">
+                                                <!-- 1dpth -->
+                                                <div role="tablist" class="boxLeft inTabList menuScroll">
+                                                    <!-- <a href="javascript:;" role="tab" aria-selected="true" class="active">나의메뉴</a> --><!-- [2022-10-11] 윤지현:삭제 -->
+                                                    <a href="javascript:;" role="tab" aria-selected="true"
+                                                        class="active inTabMenu">조회</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">송금/출금</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">공과금</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">관리</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">NH콕모임 <i
+                                                            aria-label="신규" class="new"></i></a>
+                                                    <!--- [2023-05-12] 콕모임 서비스 신설 -->
+                                                    <a href="javascript:;" role="tab"
+                                                        class="inTabMenu">마이데이터</a><!-- [2022-09-02] 추가 -->
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">카드</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">외환</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">간편결제</a>
+
+                                                </div>
+                                                <!-- 1dpth -->
+                                                <div class="tabPanelList boxRight menuScroll">
+                                                    <!-- [2022-10-11] 윤지현:삭제 -->
+                                                    <div role="tabpanel" class="show inTabPanel">
+                                                        <!-- [2022-10-11] 윤지현:.show 클래스추가 -->
+                                                        <!-- 조회 -->
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico11">계좌보기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMAS0001R', null, null, this);"
+                                                                    logincheck="true" title="농협 전계좌 조회">농협 전계좌 조회</a>
+
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMOB2000R', null, null, this);"
+                                                                    logincheck="true" title="다른금융계좌 조회(어카운트 인포)">다른금융계좌
+                                                                    조회<br>(어카운트 인포)</a>
+
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0102R', null, null, this);"
+                                                                    logincheck="true" title="콕뱅크등록계좌">콕뱅크등록계좌</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico12">거래보기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0101R', null, null, this);"
+                                                                    logincheck="true" title="거래내역조회">거래내역조회</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTR0606R', null, null, this);"
+                                                                    logincheck="true" title="송금내역조회">송금내역조회</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //조회 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 송금/출금 -->
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico21">보내기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTR0002R1', {'pageLinkType':'ACNT_SND'}, null, this);"
+                                                                    logincheck="true" title="콕송금">콕송금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTR3001R', {'pageLinkType':'FAST_SND'}, null, this);"
+                                                                    logincheck="true" title="빠른송금/관리">빠른송금/관리</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTR0606R', null, null, this)"
+                                                                    logincheck="true" title="송금내역">송금내역</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico22">찾기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMAT0001R', null, null, this);"
+                                                                    logincheck="true" title="ATM출금">ATM출금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMAT0010R', null, null, this);"
+                                                                    logincheck="true" title="콕창구출금">콕창구출금</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico23">모으기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="javascript:smvw0002r.goCharge();"
+                                                                    title="잔액채우기">잔액채우기</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico24">자동보내기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMAU0101R', null, null, this);"
+                                                                    logincheck="true" title="자동이체 신청">자동이체 신청</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMAU0001R', null, null, this);"
+                                                                    logincheck="true" title="자동이체 조회">자동이체 조회</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico25">돌려받기</strong>
+                                                            <!-- 2022-10-06 메뉴수정-->
+                                                            <div class="jsTgWrap accRegist menusBox">
+                                                                <a href="javascript:;" role="button"
+                                                                    aria-expanded="false" class="jsTgBtn menus"
+                                                                    title="오픈뱅킹 자금반환청구">오픈뱅킹 자금반환청구</a>
+                                                                <div class="jsTgCont subMenus">
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMOB3000R', null, null, this);"
+                                                                        logincheck="true" title="자금반환청구 안내">자금반환청구
+                                                                        안내</a>
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMOB3001R', null, null, this);"
+                                                                        logincheck="true" title="자금반환청구 신청">자금반환청구
+                                                                        신청</a>
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMOB3010R', null, null, this);"
+                                                                        logincheck="true" title="신청결과 조회">신청결과 조회</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico26">돌려주기</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0401R', null, null, this)"
+                                                                    logincheck="true" title="착오송금 반환동의">착오송금 반환동의</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //송금/출금 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 공과금 -->
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico31">지로/생활요금</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0001R', null, null, this);"
+                                                                    logincheck="true" title="지로납부">지로납부</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0013R', null, null, this);"
+                                                                    logincheck="true" title="전기요금/TV수신료">전기요금/TV수신료</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0101R', null, null, this);"
+                                                                    logincheck="true" title="상하수도요금">상하수도요금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTR0002R1', {'pageLinkType':'AP_SND'}, null, this)"
+                                                                    logincheck="true" title="아파트관리비">아파트관리비</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico32">연금/사회보험</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0080R', null, null, this);"
+                                                                    logincheck="true" title="국민연금추납/반납금">국민연금추납/반납금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0090R', null, null, this);"
+                                                                    logincheck="true" title="통합사회보험료">통합사회보험료</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico33">지방세/범칙금</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0023R', null, null, this);"
+                                                                    logincheck="true" title="지방세 납부">지방세 납부</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTX0027R', null, null, this);"
+                                                                    logincheck="true" title="교통범칙금">교통범칙금</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //공과금 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 관리 -->
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico41">계좌관리</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0103R', null, null, this);"
+                                                                    logincheck="true" title="계좌등록">계좌등록</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0102R', null, null, this);"
+                                                                    logincheck="true" title="등록계좌 관리">등록계좌 관리</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMTR0701R', null, null, this);"
+                                                                    logincheck="true" title="자주쓰는계좌 관리업데이트">자주쓰는계좌 관리<i
+                                                                        class="recommend">업데이트</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0900R', null, null, this);"
+                                                                    logincheck="true" title="계좌비밀번호 변경">계좌비밀번호 변경</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0800R', {'io_inq_ds2':'11'}, null, this);"
+                                                                    logincheck="true" title="한도제한 해제(농·축협)">한도제한
+                                                                    해제(농·축협)</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA1000R', null, null, this);"
+                                                                    logincheck="true" title="예탁금잔액통보 제외서비스새로운">예탁금잔액통보
+                                                                    <br>제외서비스<i class="new">새로운</i></a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- [2023-05-17] 입출금알림 접근성 개선 -->
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico75">계좌알림</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMVW4000R', null, null, this);"
+                                                                    logincheck="true" title="입출금알림추천">입출금알림<i
+                                                                        class="recommend">추천</i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico42">계좌해지</div>
+                                                            <div class="jsTgWrap accRegist menusBox">
+                                                                <a href="javascript:;" role="button"
+                                                                    class="jsTgBtn menus" aria-expanded="false"
+                                                                    title="입출금 계좌해지">입출금 계좌해지</a>
+                                                                <div class="jsTgCont subMenus">
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMMA0504R', {'io_inq_ds2':'02'}, null, this);"
+                                                                        logincheck="true" title="해지신청">해지신청</a>
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMMA0507R', null, null, this);"
+                                                                        logincheck="true" title="해지내역">해지내역</a>
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMMA0501R', {'io_inq_ds2':'01'}, null, this);"
+                                                                        logincheck="true" title="비대면 해지 설정">비대면 해지
+                                                                        설정</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico43">송금한도</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMVW1501I', null, null, this);"
+                                                                    logincheck="true" title="송금한도설정">송금한도설정</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico44">오픈뱅킹</div>
+                                                            <div class="subMenus">
+                                                                <!-- <a href="javascript:;" role="button">오픈뱅킹안내</a> -->
+
+                                                                <a href="javascript:smvw0002r.checkOpenBanking();"
+                                                                    role="button" title="오픈뱅킹관리">오픈뱅킹관리</a>
+
+                                                                <a href="javascript:smvw0002r.cancleOpenBanking();"
+                                                                    role="button" title="오픈뱅킹 서비스 해지">오픈뱅킹 서비스 해지</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- //관리 -->
+                                                    </div>
+                                                    <!-- [2023-05-12] 콕모임 서비스 신설// -->
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- NH콕모임 -->
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico61">콕모임</strong>
+                                                            <div class="subMenus">
+                                                                <a onclick="smvw0002r.fn_goCokGathering('SMCM0001R_1');"
+                                                                    role="button" title="콕모임 안내">콕모임 안내</a>
+                                                                <a onclick="smvw0002r.fn_goCokGathering('SMCM0001R_2');"
+                                                                    role="button" title="콕모임 홈">콕모임 홈</a>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico62">관리(모임주 전용)</strong>
+                                                            <div class="jsTgWrap accRegist menusBox">
+                                                                <a onclick="javascript:smvw0002r.fn_openCokManage(this);;"
+                                                                    role="button" aria-expanded="true"
+                                                                    class="jsTgBtn menus" title="콕모임 관리">콕모임 관리</a>
+                                                                <div class="jsTgCont subMenus" style="display: block;">
+                                                                    <a onclick="smvw0002r.fn_goCokGathering('SMCM0002R_1');"
+                                                                        role="button" title="내 모임관리">내 모임관리</a>
+                                                                    <a onclick="smvw0002r.fn_goCokGathering('SMCM0002R_2');"
+                                                                        role="button" title="내 모임원 관리">내 모임원 관리</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- //[2023-05-12] 콕모임 서비스 신설 -->
+                                                    <!-- [2022-09-02] 추가 -->
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 마이데이터 -->
+                                                        <!-- 2022-11-14 마이데이터 고도화 대응 개편 -->
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico90">NH콕마이데이터</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'MAMA2001'});"
+                                                                    title="마이데이터 홈">마이데이터 홈</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico91">자산</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ASTA2001'});"
+                                                                    title="전체자산">전체자산</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ASAC2001'});"
+                                                                    title="자산현황">자산현황</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ASCD2001'});"
+                                                                    title="부채관리">부채관리</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ASIP2001'});"
+                                                                    title="자산진단">자산진단</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico92">지출</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'LCFD2001'});"
+                                                                    title="금융달력">금융달력</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'LCLE2001'});"
+                                                                    title="지출내역">지출내역</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'LCIP2001'});"
+                                                                    title="지출분석">지출분석</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico93">금융생활</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'PDMY2001'});"
+                                                                    title="나의목표">나의목표</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'PDPD1001'});"
+                                                                    title="상품추천">상품추천</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'PDRT2001'});"
+                                                                    title="금융통통">금융통통</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'PDBF2001'});"
+                                                                    title="금융브리핑">금융브리핑</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico94">제휴서비스</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ANCA2201'});"
+                                                                    title="NH콕마이카">NH콕마이카</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ANRE2201'});"
+                                                                    title="NH콕부동산">NH콕부동산</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'ANFM2001'});"
+                                                                    title="귀농귀촌">귀농귀촌</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="openMyData({'screenId':'SZFC2101'});"
+                                                                    title="마이농가">마이농가</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //마이데이터 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 카드 -->
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico45">카드명세</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0202R', null, null, this);"
+                                                                    logincheck="true" title="카드 승인내역">카드 승인내역</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMMA0208R', null, null, this);"
+                                                                    logincheck="true" title="이용대금 명세서">이용대금 명세서</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico46">카드로 빌리기</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0301I', null, null, this);"
+                                                                    logincheck="true"
+                                                                    title="단기카드대출(현금서비스)">단기카드대출(현금서비스)</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico47">카드 만들기</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:smvw0002r.fn_goCard();"
+                                                                    role="button" aria-label="새창열림"
+                                                                    title="카드신청">카드신청</a>
+                                                                <a href="javascript:appOpenLink('nhsmartcard');"
+                                                                    role="button" aria-label="새창열림"
+                                                                    title="농협카드앱 바로가기">농협카드앱 바로가기</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //카드 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 외환 -->
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico51">환전하기</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMEX0001R', null, null, this);"
+                                                                    logincheck="true" title="환전신청">환전신청</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMEX0006R', null, null, this);"
+                                                                    logincheck="true" title="환전내역">환전내역</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico52">환율조회/계산</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMFI0008R', null, null, this);"
+                                                                    logincheck="true" title="환율조회">환율조회</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMFI0020R', null, null, this);"
+                                                                    logincheck="true" title="환전계산기">환전계산기</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico53">외화보내기</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMOR1001R', null, null, this);"
+                                                                    logincheck="true" title="해외송금안내">해외송금안내</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMOR1002R', null, null, this);"
+                                                                    logincheck="true" title="해외송금신청">해외송금신청</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMOR1002R', {'searchCheck':'Y'}, null, this);"
+                                                                    logincheck="true" title="해외송금내역">해외송금내역</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico54">외화보관하기</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMEF1100R', null, null, this);"
+                                                                    logincheck="true" title="내 외화주머니">내 외화주머니</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMEF1200R', null, null, this);"
+                                                                    logincheck="true" title="외화주머니 거래내역">외화주머니 거래내역</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <div class="menuTit menuico55">외화선물하기</div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMEF2000R', null, null, this);"
+                                                                    logincheck="true" title="콕 외화기프팅!">콕 외화기프팅!</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMEF2200R', null, null, this);"
+                                                                    logincheck="true" title="외화선물내역">외화선물내역</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //외환 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 간편결제 -->
+                                                        <div class="menuWrap">
+                                                            <!-- <div class="menuTit menuico56">간편결제</div> -->
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button" class="menus2"
+                                                                    onclick="navigate('SMZP2001R', null, null, this);"
+                                                                    logincheck="true" title="제로페이">제로페이</a>
+                                                                <a href="javascript:;" role="button" class="menus2"
+                                                                    onclick="navigate('SMZP4000R', null, null, this);"
+                                                                    logincheck="true" title="제로페이 모바일 상품권">제로페이 모바일
+                                                                    상품권</a>
+                                                                <a href="javascript:;" role="button" class="menus2"
+                                                                    onclick="navigate('SMSM1001R', {'cokpayOpenYn':'Y'}, null, this);"
+                                                                    logincheck="true" title="모바일현금카드">모바일현금카드</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //간편결제 -->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div role="tabpanel" class="tabPanel">
+                                            <!-- 금융상품T -->
+                                            <div class="tabWrap jsTabInTab menuBoxWrap">
+                                                <!-- 1dpth -->
+                                                <div role="tablist" class="boxLeft menuScroll inTabList">
+                                                    <a href="javascript:;" role="tab" aria-selected="true"
+                                                        class="active inTabMenu">입출금</a>
+                                                    <a href="javascript:navigate('SMJO0005R');" role="button"
+                                                        class="links" title="특판상품 ">특판상품 <i aria-label="신규"
+                                                            class="new"></i></a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">예금/적금</a>
+                                                    <a href="javascript:;" role="tab" class="inTabMenu">대출</a>
+                                                    <a href="javascript:navigate('SMJO0001R',{wrsType:'fund'});"
+                                                        role="button" class="links" title="펀드">펀드</a>
+                                                </div>
+                                                <!-- 1dpth -->
+                                                <div class="tabPanelList boxRight menuScroll">
+                                                    <div role="tabpanel" class="show inTabPanel">
+                                                        <!-- 입출금 -->
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico81">입출금</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001159', 'prodNewCD' : '1005213680001', 'nhType' : '2', 'accCheck' : 'N'});"
+                                                                    title="MY콕통장">MY콕통장</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001042', 'prodNewCD' : '1005213590001', 'nhType' : '2'});"
+                                                                    title="주머니(money)통장">주머니(money)통장</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001225', 'prodNewCD' : '1005213720001', 'nhType' : '2'});"
+                                                                    title="NH콕모임통장새로운">NH콕모임통장<i class="new">새로운</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico82">예금/적금</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001195', 'prodNewCD' : '1008413710001', 'nhType' : '2'});"
+                                                                    title="NH고향사랑기부적금">NH고향사랑기부적금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001194', 'prodNewCD' : '1005313710001', 'nhType' : '2'});"
+                                                                    title="NH고향사랑기부예금">NH고향사랑기부예금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001111', 'prodNewCD' : '1008413660001', 'nhType' : '2'});"
+                                                                    title="NH매일적금">NH매일적금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001040', 'prodNewCD' : '1008413590001', 'nhType' : '2'});"
+                                                                    title="주머니(money)적금">주머니(money)적금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001063', 'prodNewCD' : '1005413590001', 'nhType' : '2'});"
+                                                                    title="주머니(money)정기적금">주머니(money)정기적금</a>
+                                                                <!-- <a href="javascript:;" role="button" onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001013', 'prodNewCD' : '1009813580001', 'nhType' : '2'});">콕! BASIC적금</a>
+                                                        <a href="javascript:;" role="button" onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001014', 'prodNewCD' : '1005313580001', 'nhType' : '2'});">콕! BASIC 예금</a> -->
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMJO5200R', {'psnFncWrsC' : '10001086', 'prodNewCD' : '1005313590001', 'nhType' : '2'});"
+                                                                    title="주머니금리쇼핑예금">주머니금리쇼핑예금</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico83">대출신청</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0101R1', {'nhType' : '2', 'psnFncWrsC' : '40000876'});"
+                                                                    title="NH콕마이카신용대출">NH콕마이카신용대출</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0101R1', {'nhType' : '2', 'psnFncWrsC' : '40000838'});"
+                                                                    title="NH콕비상금대출">NH콕비상금대출</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0101R1', {'nhType' : '2', 'psnFncWrsC' : '40000718'});"
+                                                                    title="NH모바일바로대출">NH모바일바로대출</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0101R1', {'nhType' : '2', 'psnFncWrsC' : '40000072'});"
+                                                                    title="예·적금담보대출">예·적금담보대출</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0301I', null, null, this);"
+                                                                    logincheck="true"
+                                                                    title="단기카드대출(현금서비스)">단기카드대출(현금서비스)</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="menuWrap">
+                                                            <strong class="menuTit menuico84">대출관리</strong>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMAS0601R', null, null, this);"
+                                                                    logincheck="true" title="비대면 기한연장">비대면 기한연장</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMLN0501R', null, null, this);"
+                                                                    logincheck="true" title="대출약정서 조회">대출약정서 조회</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //대출 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- //금융상품T -->
+                                        </div>
+
+
+
+                                        <div role="tabpanel" class="tabPanel">
+                                            <div class="tabWrap jsTabInTab menuBoxWrap">
+                                                <!-- 1dpth -->
+                                                <div class="boxLeft menuScroll">
+                                                    <div class="menuHome menuico03"
+                                                        onclick="navigate('SMCF0001R', null, null, this);">콕팜 홈</div>
+                                                    <!-- [2023-07-18] 콕팜 홈 추가 -->
+                                                    <div role="tablist" class="inTabList">
+                                                        <a href="javascript:;" role="tab" aria-selected="true"
+                                                            class="active inTabMenu">나의농축협</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">준조합원가입 <i
+                                                                aria-label="추천" class="recommend"></i></a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">직거래장터</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">콕팜소식</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">영농생활</a>
+                                                    </div>
+                                                </div>
+                                                <!-- 1dpth -->
+                                                <div class="tabPanelList boxRight menuScroll">
+                                                    <div role="tabpanel" class="show inTabPanel">
+                                                        <!-- 나의농축협 -->
+                                                        <div class="menuWrap">
+                                                            <div class="submenuHome"> <!-- [2023-07-18] 나의농축협 홈 추가 -->
+                                                                <strong class="menuTit menuico03_01">나의농축협</strong>
+                                                                <div class="submenuhomeBtn">
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMCF0001R', {'sMenu':'maco'}, null, this);"
+                                                                        title="나의농축협 홈">나의농축협 홈</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'memcomm'}, null, this);"
+                                                                    title="소통광장 추천">소통광장 <i class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'taxfreeoil'}, null, this);"
+                                                                    title="면세유현황">면세유현황</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'investment'}, null, this);"
+                                                                    title="출자/배당금">출자/배당금</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'joinfee'}, null, this);"
+                                                                    title="가입금/이용고배당금 추천">가입금/이용고배당금 <i
+                                                                        class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'jobdiary'}, null, this);"
+                                                                    title="농작업일지">농작업일지</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'agriship'}, null, this);"
+                                                                    title="농산물경락/출하">농산물경락/출하</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'materials'}, null, this);"
+                                                                    title="영농자재구매내역">영농자재구매내역</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'ezwel'}, null, this);"
+                                                                    title="복지몰">복지몰</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'rest'}, null, this);"
+                                                                    title="휴양관예약">휴양관예약</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'education'}, null, this);"
+                                                                    title="조합원교육안내">조합원교육안내</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'funeral'}, null, this);"
+                                                                    title="장례지원">장례지원</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //조합원 전용 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 준조합원가입 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'untact'}, null, this);"
+                                                                    title="가입신청">가입신청</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'untactcheck'}, null, this);"
+                                                                    title="가입상황 확인">가입상황 확인</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //준조합원가입 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 직거래장터 23.05.22 depth 추가 -->
+                                                        <div class="menuWrap">
+                                                            <div class="submenuHome"> <!-- [2023-07-18] 직거래장터 홈 추가 -->
+                                                                <strong class="menuTit menuico03_03">직거래장터</strong>
+                                                                <div class="submenuhomeBtn">
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMCF0001R', {'sMenu':'market'}, null, this);"
+                                                                        title="직거래장터 홈">직거래장터 홈</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cfmarket'}, null, this);"
+                                                                    title="농축산직거래">농축산직거래</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cfcsnc'}, null, this);"
+                                                                    title="농축협스토어추천">농축협스토어<i
+                                                                        class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cftm'}, null, this);"
+                                                                    title="중고장터">중고장터</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //직거래장터 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 콕팜소식 23.05.22 depth 추가 -->
+                                                        <div class="menuWrap">
+                                                            <div class="submenuHome"> <!-- [2024-05-28] 콕팜소식 명칭 변경 -->
+                                                                <strong class="menuTit menuico03_05">콕팜소식</strong>
+                                                                <div class="submenuhomeBtn">
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMCF0001R', {'sMenu':'news'}, null, this);"
+                                                                        title="콕팜소식 홈">콕팜소식 홈</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'allnews'}, null, this);"
+                                                                    title="전국농축협소식">전국농축협소식</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'htownnews'}, null, this);"
+                                                                    title="내고향소식새로운">내고향소식<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'nhnews'}, null, this);"
+                                                                    title="범농협소식">범농협소식</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'support'}, null, this);"
+                                                                    title="농업인지원제도">농업인지원제도</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- 콕팜소식 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 영농생활 -->
+                                                        <div class="menuWrap">
+                                                            <div class="submenuHome"> <!-- [2023-07-18] 영농라이프 홈 추가 -->
+                                                                <strong class="menuTit menuico03_04">영농생활</strong>
+                                                                <div class="submenuhomeBtn">
+                                                                    <a href="javascript:;" role="button"
+                                                                        onclick="navigate('SMCF0001R', {'sMenu':'ynlife'}, null, this);"
+                                                                        title="영농생활 홈">영농생활 홈</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'video'}, null, this);"
+                                                                    title="콕팜정보통">콕팜정보통</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'donation'}, null, this);"
+                                                                    title="고향사랑기부제">고향사랑기부제</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'people'}, null, this);"
+                                                                    title="농촌인력중개">농촌인력중개</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'happycall'}, null, this);"
+                                                                    title="농업인행복콜센터">농업인행복콜센터</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'weekfarm'}, null, this);"
+                                                                    title="취약농가인력지원">취약농가인력지원</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'support'}, null, this);"
+                                                                    title="농업인지원제도">농업인지원제도</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'farmprice'}, null, this);"
+                                                                    title="오늘의 농산물 시세">오늘의 농산물 시세</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'livestockprice'}, null, this);"
+                                                                    title="오늘의 축산물 시세">오늘의 축산물 시세</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'nongsa'}, null, this);"
+                                                                    title="NH오늘농사">NH오늘농사</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'crop'}, null, this);"
+                                                                    title="작물종합기술정보">작물종합기술정보</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'withfarm'}, null, this);"
+                                                                    title="농가경영관리">농가경영관리</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'nhpvds'}, null, this);"
+                                                                    title="농협공동방제">농협공동방제</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'dronia'}, null, this);"
+                                                                    title="드로니아">드로니아</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //영농생활 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- //콕팜T -->
+                                        </div>
+
+
+
+                                        <div role="tabpanel" class="tabPanel">
+                                            <!-- 콕쇼핑T -->
+                                            <div class="tabWrap jsTabInTab menuBoxWrap">
+                                                <!-- 1dpth -->
+                                                <div class="boxLeft menuScroll">
+                                                    <div class="menuHome menuico04"
+                                                        onclick="navigate('SMCF0001R', {'sMenu':'cokshopping'}, null, this);">
+                                                        콕쇼핑 홈</div> <!-- [2023-07-18] 콕쇼핑 홈 추가 -->
+                                                    <div role="tablist" class="inTabList">
+                                                        <a href="javascript:;" role="tab" aria-selected="true"
+                                                            class="active inTabMenu">종합몰</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">식품/건강</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">정기구독</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">생활/정보</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">문화/여행</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">판매자전용 <i
+                                                                aria-label="추천" class="recommend"></i></a>
+                                                    </div>
+                                                </div>
+                                                <!-- 1dpth -->
+                                                <div class="tabPanelList boxRight menuScroll">
+                                                    <div role="tabpanel" class="show inTabPanel">
+                                                        <!-- 종합몰 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'nonghyupmall'}, null, this);"
+                                                                    title="농협몰">농협몰</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'tlcshop'}, null, this);"
+                                                                    title="TLC쇼핑새로운">TLC쇼핑<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'csnc'}, null, this);"
+                                                                    title="농축협스토어">농축협스토어</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'ehanaromart'}, null, this);"
+                                                                    title="e-하나로마트">e-하나로마트</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'csmarket'}, null, this);"
+                                                                    title="농축산직거래추천">농축산직거래<i
+                                                                        class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cstm'}, null, this);"
+                                                                    title="중고장터">중고장터</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //종합몰 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 식품/건강 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'meat'}, null, this);"
+                                                                    title="라이블리">라이블리</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'hansamin'}, null, this);"
+                                                                    title="한삼인">한삼인</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'moguchon'}, null, this);"
+                                                                    title="목우촌">목우촌</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'toreore'}, null, this);"
+                                                                    title="또래오래">또래오래</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'riceall'}, null, this);"
+                                                                    title="농협양곡">농협양곡</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //식품/건강 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 정기구독 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'fruit'}, null, this);"
+                                                                    title="월간농협맛선추천">월간농협맛선<i
+                                                                        class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'barf'}, null, this);"
+                                                                    title="바프독">바프독</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- 정기구독 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 생활/정보 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'flower'}, null, this);"
+                                                                    title="K플라워">K플라워</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'weed'}, null, this);"
+                                                                    title="농협벌초대행">농협벌초대행</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'jangrae'}, null, this);"
+                                                                    title="농협장례식장">농협장례식장</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 문화/여행 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'nhtour'}, null, this);"
+                                                                    title="NH여행">NH여행</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'farmstay'}, null, this);"
+                                                                    title="팜스테이">팜스테이</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'agrimuseum'}, null, this);"
+                                                                    title="농업박물관">농업박물관</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //문화/여행 -->
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 판매자전용 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'delivery'}, null, this);"
+                                                                    title="농협방문택배">농협방문택배</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'payapplite'}, null, this);"
+                                                                    title="개인간 카드거래">개인간 카드거래</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- //판매자전용 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- //콕쇼핑T -->
+                                        </div>
+
+
+
+                                        <div role="tabpanel" class="tabPanel">
+                                            <!-- 콕혜택T -->
+                                            <div class="tabWrap jsTabInTab menuBoxWrap">
+                                                <!-- 1dpth -->
+                                                <div class="boxLeft menuScroll">
+                                                    <div class="menuHome menuico05"
+                                                        onclick="navigate('SMCF0001R', {'sMenu':'cokworld'}, null, this);">
+                                                        콕혜택 홈</div> <!-- [2024-03-14] 콕혜택 명칭 변경 -->
+                                                    <div role="tablist" class="inTabList">
+                                                        <a href="javascript:;" role="tab" aria-selected="true"
+                                                            class="active inTabMenu">생활금융</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">통신비 절약</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">생활혜택</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">부동산</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">자동차</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">건강정보</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">생활정보</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">여행 <i
+                                                                aria-label="신규" class="new"></i></a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">MY콕</a>
+                                                        <a href="javascript:;" role="tab" class="inTabMenu">정보보호</a>
+
+                                                    </div>
+                                                </div>
+                                                <!-- 1dpth -->
+                                                <div class="tabPanelList boxRight menuScroll">
+                                                    <div role="tabpanel" class="show inTabPanel">
+                                                        <!-- 생활금융 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'life'}, null, this);"
+                                                                    title="NH농협생명새로운">NH농협생명<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'namu'}, null, this);"
+                                                                    title="주식거래추천">주식거래<i class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'namuacc'}, null, this);"
+                                                                    title="주식계좌개설">주식계좌개설</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'stock'}, null, this);"
+                                                                    title="증권추천추천">증권추천<i class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cardpoint'}, null, this);"
+                                                                    title="카드포인트 추천">카드포인트 <i
+                                                                        class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'creditinfo'}, null, this);"
+                                                                    title="신용정보 조회새로운">신용정보 조회<i class="new">새로운</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 통신비 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'thMall'}, null, this);"
+                                                                    title="알뜰폰 전용몰추천">알뜰폰 전용몰<i
+                                                                        class="recommend">추천</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 혜택 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'untactht'}, null, this);"
+                                                                    title="준조합원 가입">준조합원 가입</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'giftcok'}, null, this);"
+                                                                    title="혜택365추천">혜택365<i class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'luck'}, null, this);"
+                                                                    title="NH콕! 운세새로운">NH콕! 운세<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'policy'}, null, this);"
+                                                                    title="정부지원금 찾기추천">정부지원금 찾기<i
+                                                                        class="recommend">추천</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 부동산 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'aptCok'}, null, this);"
+                                                                    title="아파트NH콕">아파트NH콕</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'realestate'}, null, this);"
+                                                                    title="NH콕부동산새로운">NH콕부동산<i class="new">새로운</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 자동차 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'carinfo'}, null, this);"
+                                                                    title="자동차정보">자동차정보</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'carinfoCharge'}, null, this);"
+                                                                    title="전기차 충전소 조회">전기차 충전소 조회</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 건강정보 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cokhealth'}, null, this);"
+                                                                    title="NH콕! 건강정보새로운">NH콕! 건강정보<i
+                                                                        class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'health'}, null, this);"
+                                                                    title="건강검진 결과 확인">건강검진 결과 확인</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'healthHistory'}, null, this);"
+                                                                    title="병의원/약국 방문기록">병의원/약국 방문기록</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'healthScreen'}, null, this);"
+                                                                    title="건강검진 결과 비교">건강검진 결과 비교</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'healthRoadmap'}, null, this);"
+                                                                    title="건강검진 로드맵">건강검진 로드맵</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 생활정보 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'cwdelivery'}, null, this);"
+                                                                    title="농협방문택배추천">농협방문택배<i
+                                                                        class="recommend">추천</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 여행 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'digitaltourid'}, null, this);"
+                                                                    title="디지털관광주민증새로운">디지털관광주민증<i
+                                                                        class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'visitkorea'}, null, this);"
+                                                                    title="대한민국 구석구석새로운">대한민국 구석구석<i
+                                                                        class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'foresttrip'}, null, this);"
+                                                                    title="국립자연휴양림새로운">국립자연휴양림<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'asfarmland'}, null, this);"
+                                                                    title="안성팜랜드새로운">안성팜랜드<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'gocamping'}, null, this);"
+                                                                    title="고캠핑새로운">고캠핑<i class="new">새로운</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'welchon'}, null, this);"
+                                                                    title="농촌여행 웰촌새로운">농촌여행 웰촌<i class="new">새로운</i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- MY콕서비스 모아보기 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <strong class="menuTit menuico05_04">MY콕</strong>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'mycok'}, null, this);"
+                                                                    title="MY콕 홈">MY콕 홈</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div role="tabpanel" class="inTabPanel">
+                                                        <!-- 정보보호 -->
+                                                        <div class="menuWrap">
+                                                            <div class="subMenus">
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'phfmsafe'}, null, this);"
+                                                                    title="휴대폰가족보호">휴대폰가족보호</a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'smartFish'}, null, this);"
+                                                                    title="스마트피싱보호추천">스마트피싱보호<i
+                                                                        class="recommend">추천</i></a>
+                                                                <a href="javascript:;" role="button"
+                                                                    onclick="navigate('SMCF0001R', {'sMenu':'theCheat'}, null, this);"
+                                                                    title="더치트">더치트</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!-- //콕혜택T -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="javascript:;" role="button" class="btnPopClose btnAllMenuClose"
+                            data-popup-focus-close="SMVW0002R-close" title="닫기">
+                            <i class="bi bi-x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 관리중인 콕모임 없을 경우 팝업 -->
+            <div id="noCokGth" class="layerPopupDim" style="display:none;">
+                <div class="popContent">
+                    <div class="popContentBox">
+                        <div class="popContBox">
+                            <div class="Layer_Pop">
+                                <div class="Layer_Tit">
+                                    <h2 tabindex="0" id="SMVW0002R-title" data-popup-focus="SMVW0002R"
+                                        class="closerSpace"><span class="blind titleA11y" role="text">모임 개설 취소</span>
+                                    </h2>
+                                </div>
+                                <div class="Layer_Con">
+                                    <!-- 컨펌메세지 -->
+                                    <div class="confirmMsg">
+                                        <i class="warning"></i>
+                                        <p class="tit"><span class="pColor">관리중인 모임</span>이 없어요.</p>
+                                        <p class="txt">관리중인 모임이 있을 경우에만 이용하실 수 있습니다. 이번에 콕모임을 만들어 보시는 건 어떠신가요?</p>
+                                        <div class="btnLnkLine">
+                                            <a href="javascript:;" role="button" class="underLine"
+                                                onclick="navigate('SMCM0001R2');" title="콕모임 안내">콕모임 안내</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Layer_Pop_Close">
+                                    <div class="btnArea">
+                                        <button type="button" title="" onclick="$POPUP.smAutoLayerClose();"
+                                            class="sel">확인</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    window.addEventListener("load", () => {
+        const id = document.querySelector("#SMVW0002R");
+        const header = document.querySelector("#header");
+        const nav = document.querySelectorAll(".nav-tabs li");
+        const bar = document.querySelector(".nav-line");
+        const menu = document.querySelector("#ham");
+        const dataBox = document.querySelector(".transaction");
+        const dateBtn = document.querySelectorAll(".date-range button");
+        const dateRangeInfo = document.querySelector(".date-range-info");
+        const exclamationBox = document.createElement("div");
+        const imageInfo = document.querySelector(".bank-info");
+        const imageView = document.querySelector("#imageView");
+        const imageViewClose = document.querySelector("#imageView a.btnPopClose");
+        imageView.style.display = "none";
+        imageInfo.addEventListener("click", () => {
+            imageView.style.display = "block";
+        });
+        imageViewClose.addEventListener("click", ()=>{
+            imageView.style.display = "none";
+        })
+        exclamationBox.classList.add("exclamation");
+        exclamationBox.innerHTML = `
+    <i class="bi bi-exclamation-circle"></i>
+    <p>조회결과가 없습니다.</p>
+`;
+        dataBox.appendChild(exclamationBox);
+        const dateArr = [
+            { date: "2024.09.01", time: "21:53:41", NowCash: 7000000, AllCash: 7000000, type: "일반신규" }
+        ];
+
+        // Function to get the formatted date string (e.g., "2024.09.01")
+        const formatDate = (date) => {
+            return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}.${String(date.getDate()).padStart(2, '0')}`;
+        };
+
+        // Function to get date difference from today in days
+        const getDateDifference = (days) => {
+            const today = new Date();
+            today.setDate(today.getDate() - days);
+            return today;
+        };
+
+        // Function to filter data based on the date range
+        const filterDateArr = (rangeDays) => {
+            const targetDate = getDateDifference(rangeDays);
+            return dateArr.filter(item => new Date(item.date.replaceAll(".", "-")) >= targetDate);
+        };
+
+        // Function to render filtered transactions in the HTML
+        const renderTransactions = (transactions) => {
+            // Clear previous transactions
+            dataBox.innerHTML = '';
+
+            if (transactions.length === 0) {
+                // Show no results message if there are no transactions
+                dataBox.appendChild(exclamationBox);
+                exclamationBox.style.display = 'block';
+            } else {
+                // Hide the no results message
+                exclamationBox.style.display = 'none';
+
+                // Loop through each transaction and create HTML structure
+                transactions.forEach((transaction) => {
+                    const transactionElement = document.createElement("div");
+                    transactionElement.classList.add("transaction-details");
+
+                    const dateElement = document.createElement("div");
+                    dateElement.classList.add("transaction-date");
+                    dateElement.textContent = `${transaction.date} ${transaction.time}`;
+
+                    const flexCover = document.createElement("div");
+                    flexCover.classList.add("transaction-flex-cover");
+
+                    const typeElement = document.createElement("div");
+                    typeElement.classList.add("transaction-type");
+                    typeElement.textContent = transaction.type;
+
+                    const amountElement = document.createElement("div");
+                    amountElement.classList.add("transaction-amount");
+                    amountElement.textContent = `${transaction.NowCash.toLocaleString()}원`;
+
+                    const balanceElement = document.createElement("div");
+                    balanceElement.classList.add("transaction-balance");
+                    balanceElement.textContent = `잔액 ${transaction.AllCash.toLocaleString()}원`;
+
+                    // Append elements to the flex container and main container
+                    flexCover.append(typeElement, amountElement, balanceElement);
+                    transactionElement.append(dateElement, flexCover);
+                    dataBox.appendChild(transactionElement);
+                });
+            }
+        };
+
+        // Function to display the selected date range in .date-range-info
+        const updateDateRangeInfo = (rangeDays) => {
+            const today = new Date();
+            const startDate = getDateDifference(rangeDays);
+            const formattedStartDate = formatDate(startDate);
+            const formattedEndDate = formatDate(today);
+
+            dateRangeInfo.textContent = `${formattedStartDate} ~ ${formattedEndDate}`;
+        };
+
+        dateBtn.forEach((elem, i) => {
+            elem.addEventListener("click", (e) => {
+                dateBtn.forEach((el) => el.classList.remove("active"));
+                e.target.classList.add("active");
+
+                let rangeDays;
+                switch (i) {
+                    case 0: rangeDays = 7; break;
+                    case 1: rangeDays = 30; break;
+                    case 2: rangeDays = 90; break;
+                    case 3: rangeDays = 180; break;
+                    default: rangeDays = 0; break;
+                }
+
+                const filteredData = filterDateArr(rangeDays);
+                renderTransactions(filteredData);
+                updateDateRangeInfo(rangeDays);
+            });
+        });
+
+        const filteredData = filterDateArr(30);
+        renderTransactions(filteredData);
+        updateDateRangeInfo(30);
+
+        menu.addEventListener("click", () => {
+            id.style.display = "block";
+            header.style.display = "block";
+        })
+
+        //header.style.display = "none";
+        //id.style.display = "none";
+        id.addEventListener("click", () => {
+            id.style.display = "none";
+            header.style.display = "none";
+        })
+
+        nav.forEach((e) => {
+            if (e.classList.contains("active")) {
+                let width = e.clientWidth;
+                let position = e.offsetLeft;
+
+                bar.style.width = `${width}px`;
+                bar.style.left = position + "px";
+            }
+
+
+
+            e.addEventListener("click", () => {
+                alert("세션이 만료 되었습니다");
+            })
+        });
+    })
+</script>
+
+</html>
